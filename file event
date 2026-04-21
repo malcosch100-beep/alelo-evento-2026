@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REMIPY EVENT - Premiación Yaguate</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+    html{scroll-behavior:smooth}
+    body{background:linear-gradient(180deg,#050816 0%,#071224 50%,#09182b 100%);color:#fff;line-height:1.6}
+    a{text-decoration:none}
+    header{position:sticky;top:0;z-index:1000;background:rgba(5,8,22,.9);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav{max-width:1200px;margin:auto;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+    .brand small{color:#67e8f9;text-transform:uppercase;letter-spacing:4px;font-size:11px;display:block;margin-bottom:4px}
+    .brand h1{font-size:24px;font-weight:800}
+    .menu{display:flex;gap:20px;flex-wrap:wrap}
+    .menu a{color:rgba(255,255,255,.8);font-size:14px}
+    .menu a:hover{color:#67e8f9}
+    .container{max-width:1200px;margin:auto;padding:60px 20px}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:start}
+    .tag{color:#67e8f9;text-transform:uppercase;letter-spacing:5px;font-size:12px;font-weight:bold;margin-bottom:16px}
+    .hero h2{font-size:58px;line-height:1.05;margin-bottom:24px;font-weight:900}
+    .hero p.main-text{font-size:18px;color:rgba(255,255,255,.82);margin-bottom:24px;max-width:700px}
+    .poster{margin-top:24px;background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(0,212,255,.08));border:1px solid rgba(103,232,249,.2);border-radius:28px;padding:30px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+    .poster .poster-title{font-size:34px;font-weight:900;text-transform:uppercase;color:#fff;margin-bottom:10px}
+    .poster .poster-sub{color:#67e8f9;font-size:15px;margin-bottom:20px;font-weight:bold;letter-spacing:2px;text-transform:uppercase}
+    .poster .poster-text{color:rgba(255,255,255,.82);font-size:16px;margin-bottom:18px}
+    .poster .mini-boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+    .mini-box{background:rgba(255,255,255,.05);border:1px solid rgba(103,232,249,.18);border-radius:18px;padding:16px}
+    .mini-box strong{display:block;color:#67e8f9;font-size:12px;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+    .side-card,.box,.program-card,.message-box,.contact-wrap,.form-box{border:1px solid rgba(103,232,249,.18);background:rgba(255,255,255,.04);border-radius:28px;box-shadow:0 15px 40px rgba(0,0,0,.25)}
+    .side-card{padding:28px;margin-bottom:20px}
+    .side-card h3,.box h3,.message-box h3,.form-box h3{font-size:28px;margin-bottom:12px;font-weight:900}
+    .side-card p,.box p,.message-box p,.form-box p{color:rgba(255,255,255,.76)}
+    .verse{font-size:30px;font-weight:800;line-height:1.2;margin:12px 0}
+    .section-title{color:#67e8f9;text-transform:uppercase;letter-spacing:4px;font-size:12px;font-weight:700;margin-bottom:12px}
+    .section-heading{font-size:42px;font-weight:900;margin-bottom:18px}
+    .section-text{color:rgba(255,255,255,.78);max-width:800px;margin-bottom:30px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+    .box{padding:24px}
+    .box h3{font-size:22px}
+    .program{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+    .program-card{padding:28px}
+    .program-item{display:flex;align-items:flex-start;gap:14px;padding:16px;border-radius:18px;border:1px solid rgba(103,232,249,.14);background:rgba(0,0,0,.14);margin-bottom:12px}
+    .number{width:36px;height:36px;border-radius:50%;background:#22d3ee;color:#05111f;font-weight:900;display:flex;justify-content:center;align-items:center;flex-shrink:0}
+    .message-box{padding:36px}
+    .contact-wrap{display:grid;grid-template-columns:1fr;padding:30px}
+    .form-box{padding:28px;background:rgba(12,23,40,.95)}
+    label{display:block;margin:14px 0 8px;font-weight:bold;color:#bae6fd}
+    input{width:100%;padding:14px 16px;border-radius:16px;border:1px solid rgba(103,232,249,.22);background:rgba(255,255,255,.05);color:white;font-size:15px;outline:none}
+    input::placeholder{color:rgba(255,255,255,.4)}
+    button,.btn{display:inline-block;padding:14px 22px;border-radius:16px;background:#22d3ee;color:#04111b;font-weight:900;border:none;cursor:pointer;margin-top:18px;font-size:15px}
+    .btn-outline{background:transparent;color:#a5f3fc;border:1px solid rgba(103,232,249,.26);margin-left:12px}
+    footer{text-align:center;padding:28px 20px;color:rgba(255,255,255,.55);border-top:1px solid rgba(255,255,255,.08);margin-top:30px}
+    @media (max-width:1024px){.hero,.program,.grid-4{grid-template-columns:1fr 1fr}.hero h2{font-size:46px}.poster .mini-boxes{grid-template-columns:1fr}}
+    @media (max-width:768px){.hero,.program,.grid-4{grid-template-columns:1fr}.menu{display:none}.hero h2{font-size:36px}.section-heading{font-size:32px}.verse{font-size:24px}.brand h1{font-size:20px}.btn-outline{margin-left:0;margin-top:12px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <small>REMIPY EVENT</small>
+        <h1>Premiación Yaguate</h1>
+      </div>
+      <nav class="menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#evento">Evento</a>
+        <a href="#programa">Programa</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section id="inicio" class="container hero">
+      <div>
+        <div class="tag">Invitación especial</div>
+        <h2>Reconocimiento al Mérito, Desarrollo e Influencia Positiva de Yaguate</h2>
+        <div class="poster">
+          <div class="poster-sub">Acto de reconocimiento</div>
+          <div class="poster-title">Una noche para honrar trayectorias que inspiran</div>
+          <p class="poster-text">Con profundo respeto y gratitud, se extiende la presente invitación a la celebración de una noche especial dedicada a honrar a hombres y mujeres cuya trayectoria, esfuerzo, liderazgo, aporte comunitario, desarrollo profesional, logros deportivos, espíritu emprendedor e influencia positiva han dejado huellas de valor en nuestro municipio.</p>
+          <div class="mini-boxes">
+            <div class="mini-box"><strong>Fecha</strong>Sábado 25 de abril de 2026</div>
+            <div class="mini-box"><strong>Hora</strong>5:00 p. m.</div>
+            <div class="mini-box"><strong>Lugar</strong>Salón de la Iglesia M.I.<br>Callejón Santa Cruz, Yaguate, San Cristóbal</div>
+          </div>
+        </div>
+        <p class="main-text">Una noche especial dedicada a honrar a hombres y mujeres cuyo esfuerzo, liderazgo, disciplina, desarrollo y ejemplo han sido de bendición e inspiración para Yaguate.</p>
+        <a class="btn" href="#contacto">Confirmar asistencia</a>
+        <a class="btn btn-outline" href="#evento">Ver detalles</a>
+      </div>
+      <div>
+        <div class="side-card">
+          <div class="section-title">Versículo</div>
+          <div class="verse">“De más estima es el buen nombre que las muchas riquezas...”</div>
+          <p>Proverbios 22:1</p>
+        </div>
+        <div class="side-card">
+          <div class="section-title">Organiza</div>
+          <h3>Darlin Alexander Pineda “Alelo”</h3>
+          <p>Con el propósito de exaltar el mérito y la influencia positiva en la comunidad.</p>
+        </div>
+        <div class="side-card">
+          <div class="section-title">Inspiración</div>
+          <h3>Honrar a quienes edifican</h3>
+          <p>Una celebración para resaltar trayectorias que impactan con fe, trabajo, disciplina y servicio.</p>
+        </div>
+      </div>
+    </section>
+    <section id="evento" class="container">
+      <div class="section-title">Sobre el evento</div>
+      <div class="section-heading">Una ceremonia para reconocer el impacto positivo en Yaguate</div>
+      <p class="section-text">Este reconocimiento honra la trayectoria, el liderazgo, el trabajo social, el crecimiento profesional, los logros deportivos, el emprendimiento y la influencia positiva de personas que han aportado valor a la ciudad.</p>
+      <div class="grid-4">
+        <div class="box"><h3>Líderes comunitarios</h3><p>Reconocimiento a quienes sirven, orientan y fortalecen el desarrollo de la comunidad con compromiso y ejemplo.</p></div>
+        <div class="box"><h3>Deportistas</h3><p>Homenaje a quienes inspiran con disciplina, esfuerzo, constancia y orgullo para Yaguate.</p></div>
+        <div class="box"><h3>Empresarios</h3><p>Valoramos a quienes impulsan oportunidades, crecimiento y emprendimiento en la ciudad.</p></div>
+        <div class="box"><h3>Influencers positivos</h3><p>Distinción a quienes usan su influencia para motivar, orientar y dejar una huella de bien.</p></div>
+      </div>
+    </section>
+    <section id="programa" class="container program">
+      <div>
+        <div class="section-title">Programa</div>
+        <div class="section-heading">Orden de la actividad</div>
+        <p class="section-text">Una velada preparada para celebrar con respeto, gratitud y honra a quienes han sido ejemplo en Yaguate.</p>
+      </div>
+      <div class="program-card">
+        <div class="program-item"><div class="number">1</div><div>Recepción de invitados</div></div>
+        <div class="program-item"><div class="number">2</div><div>Oración de apertura</div></div>
+        <div class="program-item"><div class="number">3</div><div>Palabras de bienvenida</div></div>
+        <div class="program-item"><div class="number">4</div><div>Entrega de reconocimientos</div></div>
+        <div class="program-item"><div class="number">5</div><div>Mensaje especial de gratitud</div></div>
+        <div class="program-item"><div class="number">6</div><div>Cierre y confraternidad</div></div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="message-box">
+        <div class="section-title">Mensaje</div>
+        <h3>Será un honor contar con su distinguida presencia</h3>
+        <p>Acompáñenos en esta ocasión significativa para celebrar a quienes, con su buen testimonio y esfuerzo, han contribuido al desarrollo y la influencia positiva de Yaguate.</p>
+      </div>
+    </section>
+    <section id="contacto" class="container">
+      <div class="contact-wrap">
+        <div class="form-box">
+          <div class="section-title">Confirmación</div>
+          <h3>Formulario de asistencia</h3>
+          <p>Complete el cuestionario y al enviarlo se abrirá WhatsApp con su confirmación lista para enviar.</p>
+          <form id="waForm">
+            <label for="nombre">Nombre completo</label>
+            <input id="nombre" type="text" placeholder="Escriba su nombre" required>
+            <label for="telefono">Número de teléfono</label>
+            <input id="telefono" type="tel" placeholder="Ejemplo: 8091234567" required>
+            <label for="direccion">Dirección de residencia <span style="opacity:.6">(opcional)</span></label>
+            <input id="direccion" type="text" placeholder="Escriba su dirección de residencia">
+            <button type="submit">Enviar cuestionario por WhatsApp</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>© 2026 Reconocimiento al Mérito, Desarrollo e Influencia Positiva de Yaguate</footer>
+  <script>
+    document.getElementById("waForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value.trim();
+      const telefono = document.getElementById("telefono").value.trim();
+      const direccion = document.getElementById("direccion").value.trim();
+      if (!nombre || !telefono) return;
+      let mensaje = "Hola, deseo confirmar mi asistencia al evento.\n\n";
+      mensaje += "Nombre: " + nombre + "\n";
+      mensaje += "Teléfono: " + telefono;
+      if (direccion) mensaje += "\nDirección de residencia: " + direccion;
+      window.open("https://wa.me/18297148483?text=" + encodeURIComponent(mensaje), "_blank");
+    });
+  </script>
+</body>
+</html>
